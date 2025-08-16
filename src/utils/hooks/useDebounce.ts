@@ -12,7 +12,7 @@ const useDebounce = (value: string = "", delay: number = 1000) => {
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      newSearchParams.set("query", value);
+      newSearchParams.set("name", value);
       if (value !== "") {
         router.replace(`${pathname}?${newSearchParams.toString()}`);
       } else {

@@ -9,9 +9,10 @@ import React, {
 } from "react";
 import { PaginatedRes, Product } from "@/types";
 import { Card, Filters, PaginationComponent } from "@/components";
-import { getProductsList } from "@/api/https";
 import { useDebounce } from "@/utils/hooks";
 import { useSearchParams } from "next/navigation";
+import {getCachedProducts} from "@/api/cache";
+
 
 interface HomeProps {
   data: PaginatedRes<Product>;
@@ -22,7 +23,7 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
 
   const searchParams = useSearchParams();
 
-  const [query, setQuery] = useState<string>("");
+  const [name, setName] = useState<string>("");
 
   const [activeView, setActiveView] = useState<"pagination" | "infinite">(
     "pagination",
@@ -32,11 +33,11 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
 
   const [products, setProducts] = useState<PaginatedRes<Product>>(data);
 
-  useDebounce(query);
+  useDebounce(name);
 
   useEffect(() => {
-    if (searchParams.get("query") !== "") {
-      getProductsList({ query: searchParams.get("query"), page }).then(
+    if (searchParams.get("name") !== "") {
+      getCachedProducts({ name: searchParams.get("name"), page }).then(
         (res) => {
           setProducts(res);
         },
@@ -44,7 +45,7 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
     } else {
       setProducts(data);
     }
-  }, [searchParams.get("query"), page]);
+  }, [searchParams.get("name"), page]);
 
   useEffect(() => {
     setPage(1);
@@ -53,8 +54,8 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
   return (
     <div className="bg-blue-100 p-6">
       <Filters
-        setQuery={setQuery}
-        query={query}
+        setName={setName}
+        name={name}
         setActiveView={setActiveView}
         activeView={activeView}
       />
@@ -67,7 +68,10 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
         ))}
       </div>
       {activeView === "pagination" && (
-        <PaginationComponent pagination={products?.pagination} setPage={setPage} />
+        <PaginationComponent
+          pagination={products?.pagination}
+          setPage={setPage}
+        />
       )}
     </div>
   );

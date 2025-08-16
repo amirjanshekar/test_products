@@ -1,13 +1,16 @@
 import { Home } from "@/components";
 import { PaginatedRes, Product } from "@/types";
-import { getCachedProducts } from "@/api/cache";
 import { Suspense } from "react";
+import { getProductsList } from "@/api/https";
+import CacheProvider from "@/lib/CacheProvider";
 
 const HomePage = async () => {
-  const data: PaginatedRes<Product> = await getCachedProducts();
+  const data: PaginatedRes<Product> = await getProductsList({ page: 1 });
   return (
     <Suspense>
-      <Home data={data} />
+      <CacheProvider>
+        <Home data={data} />
+      </CacheProvider>
     </Suspense>
   );
 };

@@ -2,15 +2,15 @@ import React, { Dispatch, FunctionComponent, SetStateAction } from "react";
 import { cx } from "class-variance-authority";
 
 interface FiltersProps {
-  setQuery: Dispatch<SetStateAction<string>>;
-  query: string;
+  setName: Dispatch<SetStateAction<string>>;
+  name: string;
   setActiveView: Dispatch<SetStateAction<"infinite" | "pagination">>;
   activeView: "infinite" | "pagination";
 }
 
 const Filters: FunctionComponent<FiltersProps> = ({
-  query,
-  setQuery,
+  name,
+  setName,
   activeView,
   setActiveView,
 }) => {
@@ -18,10 +18,10 @@ const Filters: FunctionComponent<FiltersProps> = ({
     <div className="flex justify-between mb-6 text-black w-full rounded-lg">
       <div>
         <input
-          name="query"
+          name="name"
           type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="h-full w-64 px-2 border border-black/30 rounded placeholder:text-sm outline-0 focus:shadow"
           placeholder="Search..."
         />
