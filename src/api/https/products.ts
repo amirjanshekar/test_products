@@ -8,8 +8,8 @@ export const getProductsList = async (params?: {
 }): Promise<PaginatedRes<Product>> => {
   const url: string = `/products/`;
 
-  const { data }: AxiosResponse<PaginatedRes<Product>> = await axios.get(url, {
+  const res: AxiosResponse<PaginatedRes<Product>> = await axios.get(url, {
     params,
   });
-  return data;
+  return res.data;
 };
