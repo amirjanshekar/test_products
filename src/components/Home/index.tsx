@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import { PaginatedRes, Product } from "@/types";
-import { Card, Filters, Pagination } from "@/components";
+import { Card, Filters, PaginationComponent } from "@/components";
 import { getProductsList } from "@/api/https";
 import { useDebounce } from "@/utils/hooks";
 import { useSearchParams } from "next/navigation";
@@ -67,7 +67,7 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
         ))}
       </div>
       {activeView === "pagination" && (
-        <Pagination pagination={products?.pagination} setPage={setPage} />
+        <PaginationComponent pagination={products?.pagination} setPage={setPage} />
       )}
     </div>
   );
