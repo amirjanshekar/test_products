@@ -24,7 +24,25 @@ describe("LRUCache", () => {
         page_size: 20,
       },
     } as PaginatedRes<Product>);
-    expect(cache.get("key1")).toBe("value1");
+    expect(cache.get("key1")).toStrictEqual({
+      result: [
+        {
+          id: "c678af81-12b8-4e87-a0aa-6a65a65914ef",
+          name: "Wireless Mouse",
+          description: "Ergonomic wireless mouse with adjustable DPI.",
+          price: "25.99",
+          image: "http://dummyimage.com/190x100.png/dddddd/000000",
+        },
+      ],
+      pagination: {
+        next: true,
+        previous: false,
+        count: 600,
+        page: 1,
+        total_pages: 30,
+        page_size: 20,
+      },
+    });
   });
 
   it("should expire after exact time", () => {
@@ -117,7 +135,43 @@ describe("LRUCache", () => {
       },
     } as PaginatedRes<Product>); // key1 should be evicted
     expect(cache.get("key1")).toBeUndefined();
-    expect(cache.get("key2")).toBe("value2");
-    expect(cache.get("key3")).toBe("value3");
+    expect(cache.get("key2")).toStrictEqual({
+      result: [
+        {
+          id: "c678af81-12b8-4e87-a0aa-6a65a65914ef",
+          name: "Wireless Mouse",
+          description: "Ergonomic wireless mouse with adjustable DPI.",
+          price: "25.99",
+          image: "http://dummyimage.com/190x100.png/dddddd/000000",
+        },
+      ],
+      pagination: {
+        next: true,
+        previous: false,
+        count: 600,
+        page: 1,
+        total_pages: 30,
+        page_size: 20,
+      },
+    });
+    expect(cache.get("key3")).toStrictEqual({
+      result: [
+        {
+          id: "c678af81-12b8-4e87-a0aa-6a65a65914ef",
+          name: "Wireless Mouse",
+          description: "Ergonomic wireless mouse with adjustable DPI.",
+          price: "25.99",
+          image: "http://dummyimage.com/190x100.png/dddddd/000000",
+        },
+      ],
+      pagination: {
+        next: true,
+        previous: false,
+        count: 600,
+        page: 1,
+        total_pages: 30,
+        page_size: 20,
+      },
+    });
   });
 });

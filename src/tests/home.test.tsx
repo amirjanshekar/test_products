@@ -5,8 +5,8 @@ import Page from "@/app/page";
 import React from "react";
 
 describe('Home', () => {
-    it('renders homepage unchanged', () => {
+    it('renders homepage unchanged', async () => {
         const { container } = render(<Page />)
-        expect(container).toMatchSnapshot()
+        await expect(container).toMatchSnapshot()
     })
 })

@@ -1,5 +1,5 @@
 import React, { Dispatch, FunctionComponent, SetStateAction } from "react";
-import { cx } from "class-variance-authority";
+// import { cx } from "class-variance-authority";
 
 interface FiltersProps {
   setName: Dispatch<SetStateAction<string>>;
