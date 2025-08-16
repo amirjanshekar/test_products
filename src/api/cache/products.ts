@@ -2,7 +2,7 @@ import { getProductsList } from "@/api/https";
 import { PaginatedRes, Product } from "@/types";
 import CustomLRUCache from "@/lib/lru_cache";
 
-export const getCachedProducts = async (params?: {
+export const getCachedProducts = async (params: {
   name?: string | null;
   page: number;
 }) => {
