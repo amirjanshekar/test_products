@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34f64fd6-4a69-4cef-8562-56fed42c0fab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Filters/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Filters/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/customLRUCache/hooks/useGetCachedData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/customLRUCache/hooks/useGetCachedData.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/customLRUCache/lru_cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/customLRUCache/lru_cache.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/home.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/home.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/lruCache.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/lruCache.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/hooks/useDebounce.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/hooks/useDebounce.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +79,7 @@
       <workItem from="1755323592917" duration="21344000" />
       <workItem from="1755388891822" duration="1489000" />
       <workItem from="1755582449435" duration="23431000" />
-      <workItem from="1755611658876" duration="4024000" />
+      <workItem from="1755611658876" duration="4351000" />
     </task>
     <servers />
   </component>

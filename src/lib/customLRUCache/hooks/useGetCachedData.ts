@@ -20,7 +20,7 @@ const useGetCachedData = <T>(
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handler: EffectCallback = () => {
-    let lru_cache = getOrInitializeCacheStore<T>();
+    const lru_cache = getOrInitializeCacheStore<T>();
 
     const cachedData: T | undefined = lru_cache.get(key.join(""));
     if (!cachedData) {
