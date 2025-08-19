@@ -3,7 +3,7 @@
 import { CacheItem } from "@/lib/customLRUCache/types";
 
 class CustomLRUCache<T> {
-  public readonly _capacity: number;
+  public _capacity: number;
   public _cache: Map<string, CacheItem<T>> = new Map();
 
   constructor(capacity: number, cache?: Map<string, unknown>) {
@@ -25,7 +25,7 @@ class CustomLRUCache<T> {
     return entry.value;
   }
 
-  set(key: string, value: T, ttl = 60 * 1000) {
+  set(key: string, value: T, ttl = 60 * 1000, permanent: boolean = true) {
     const expires = Date.now() + ttl;
     if (this._cache.has(key)) {
       const entry = this._cache.get(key);
@@ -42,6 +42,15 @@ class CustomLRUCache<T> {
         this.delete(leastRecentlyUsedKey!);
       }
       this._cache.set(key, { value, expires });
+    }
+    if (permanent) {
+      sessionStorage.setItem(
+        "cache",
+        JSON.stringify({
+          _capacity: this._capacity,
+          _cache: [...this._cache],
+        }),
+      );
     }
   }
 

@@ -1,12 +1,12 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "@jest/globals";
-import Page from "@/app/page";
 import React from "react";
+import HomePage from "@/app/page";
 
 describe("Home", () => {
   it("renders homepage unchanged", async () => {
-    const { container } = render(<Page />);
+    const { container } = await render(<HomePage />);
     await expect(container).toMatchSnapshot();
   });
 });

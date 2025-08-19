@@ -16,7 +16,7 @@ const Filters: FunctionComponent<FiltersProps> = ({
   setOrdering,
 }) => {
   return (
-    <div className="flex justify-between mb-6 text-black w-full sticky top-0 bg-blue-100 p-6 shadow">
+    <div className="flex justify-between mb-6 text-black w-full sticky top-0 bg-blue-100 p-6 shadow z-20">
       <input
         name="name"
         type="text"

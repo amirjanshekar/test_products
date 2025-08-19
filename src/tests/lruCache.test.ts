@@ -97,7 +97,7 @@ describe("LRUCache", () => {
         total_pages: 30,
         page_size: 20,
       },
-    } as PaginatedRes<Product>);
+    } as PaginatedRes<Product>, 60*1000, false);
     cache.set("key2", {
       result: [
         {
@@ -116,7 +116,7 @@ describe("LRUCache", () => {
         total_pages: 30,
         page_size: 20,
       },
-    } as PaginatedRes<Product>);
+    } as PaginatedRes<Product>, 60*1000, false);
     cache.set("key3", {
       result: [
         {
@@ -135,9 +135,28 @@ describe("LRUCache", () => {
         total_pages: 30,
         page_size: 20,
       },
-    } as PaginatedRes<Product>); // key1 should be evicted
-    expect(cache.get("key1")).toBeUndefined();
-    expect(cache.get("key2")).toStrictEqual({
+    } as PaginatedRes<Product>, 60*1000, false); // key1 should be evicted
+    cache.set("key1", {
+      result: [
+        {
+          id: "c678af81-12b8-4e87-a0aa-6a65a65914ef",
+          name: "Wireless Mouse",
+          description: "Ergonomic wireless mouse with adjustable DPI.",
+          price: "25.99",
+          image: "http://dummyimage.com/190x100.png/dddddd/000000",
+        },
+      ],
+      pagination: {
+        next: true,
+        previous: false,
+        count: 600,
+        page: 1,
+        total_pages: 30,
+        page_size: 20,
+      },
+    } as PaginatedRes<Product>, 60*1000, false);
+    expect(cache.get("key2")).toBeUndefined();
+    expect(cache.get("key1")).toStrictEqual({
       result: [
         {
           id: "c678af81-12b8-4e87-a0aa-6a65a65914ef",

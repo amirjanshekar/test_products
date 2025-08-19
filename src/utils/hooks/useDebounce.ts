@@ -29,7 +29,7 @@ const useDebounce = (
     }, delay);
 
     return () => clearTimeout(handler);
-  }, [value, delay, sideAction, pathname, router, newSearchParams]);
+  }, [value, delay]);
 };
 
 export default useDebounce;

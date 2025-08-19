@@ -4,7 +4,10 @@ import { Suspense } from "react";
 import { getProductsList } from "@/api/https";
 
 const HomePage = async () => {
-  const data: PaginatedRes<Product> = await getProductsList({ page: 1 });
+  const data: PaginatedRes<Product> = await getProductsList({
+    page: 1,
+    ordering: "name",
+  });
   return (
     <Suspense>
       <Home initialData={data} />

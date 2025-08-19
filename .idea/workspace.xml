@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34f64fd6-4a69-4cef-8562-56fed42c0fab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Filters/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Filters/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/customLRUCache/hooks/useGetCachedData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/customLRUCache/hooks/useGetCachedData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/customLRUCache/lru_cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/customLRUCache/lru_cache.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/home.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/home.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/lruCache.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/lruCache.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/hooks/useDebounce.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/hooks/useDebounce.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +50,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/amirjanshekar/projects/test_products/src/api/cache&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/amirjanshekar/projects/test_products/src/lib/customLRUCache&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -58,9 +66,14 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/lib/customLRUCache" />
+      <recent name="$PROJECT_DIR$/src/lib/hooks" />
       <recent name="$PROJECT_DIR$/src/api/cache" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/lib/customLRUCache" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -74,6 +87,8 @@
       <workItem from="1755323120978" duration="466000" />
       <workItem from="1755323592917" duration="21344000" />
       <workItem from="1755388891822" duration="1489000" />
+      <workItem from="1755582449435" duration="23431000" />
+      <workItem from="1755611658876" duration="4024000" />
     </task>
     <servers />
   </component>

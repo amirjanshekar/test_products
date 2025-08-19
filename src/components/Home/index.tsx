@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FunctionComponent, useMemo, useState } from "react";
+import React, { FunctionComponent, ReactNode, useMemo, useState } from "react";
 import { PaginatedRes, Product } from "@/types";
 import { Card, Filters, PaginationComponent } from "@/components";
 import { useDebounce } from "@/utils/hooks";
@@ -32,7 +32,7 @@ const Home: FunctionComponent<HomeProps> = ({ initialData }) => {
     initialData,
   );
 
-  const memoizedRenderData = useMemo(() => {
+  const memoizedRenderData: ReactNode = useMemo(() => {
     if (!isLoading) {
       return (
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-cols-1 gap-6 w-full">
@@ -40,6 +40,19 @@ const Home: FunctionComponent<HomeProps> = ({ initialData }) => {
             <Card data={product} key={product?.id} />
           ))}
         </div>
+      );
+    }
+  }, [data, isLoading]);
+
+  const memoizedRenderSkeleton: ReactNode = useMemo(() => {
+    if (isLoading) {
+      return (
+        <Skeleton
+          count={20}
+          height={290}
+          inline
+          containerClassName="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-cols-1 gap-6 w-full"
+        />
       );
     }
   }, [data, isLoading]);
@@ -53,14 +66,7 @@ const Home: FunctionComponent<HomeProps> = ({ initialData }) => {
         setOrdering={setOrdering}
       />
       <div className="px-6">
-        {isLoading && (
-          <Skeleton
-            count={20}
-            height={290}
-            inline
-            containerClassName="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-cols-1 gap-6 w-full"
-          />
-        )}
+        {memoizedRenderSkeleton}
         {memoizedRenderData}
       </div>
 
