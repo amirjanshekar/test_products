@@ -66,7 +66,7 @@ const useGetCachedData = <T>(
     keyRef.current = key;
   };
 
-  useEffect(handler, key);
+  useEffect(handler, [fallback, initialData, key]);
 
   return { data, isLoading };
 };

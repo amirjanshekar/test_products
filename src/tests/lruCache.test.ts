@@ -70,9 +70,11 @@ describe("LRUCache", () => {
       } as PaginatedRes<Product>,
       1000,
     );
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       expect(cache.get("key1")).toBeUndefined();
     }, 2000);
+
+    clearTimeout(timeout);
   });
 
   it("should evict the least recently used item when capacity is exceeded", () => {

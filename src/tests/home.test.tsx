@@ -1,12 +1,12 @@
-import '@testing-library/jest-dom'
-import { render } from '@testing-library/react'
-import {describe, expect, it} from "@jest/globals";
+import "@testing-library/jest-dom";
+import { render } from "@testing-library/react";
+import { describe, expect, it } from "@jest/globals";
 import Page from "@/app/page";
 import React from "react";
 
-describe('Home', () => {
-    it('renders homepage unchanged', async () => {
-        const { container } = render(<Page />)
-        await expect(container).toMatchSnapshot()
-    })
-})
+describe("Home", () => {
+  it("renders homepage unchanged", async () => {
+    const { container } = render(<Page />);
+    await expect(container).toMatchSnapshot();
+  });
+});

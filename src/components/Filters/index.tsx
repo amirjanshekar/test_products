@@ -6,10 +6,7 @@ interface FiltersProps {
   name: string;
 }
 
-const Filters: FunctionComponent<FiltersProps> = ({
-  name,
-  setName,
-}) => {
+const Filters: FunctionComponent<FiltersProps> = ({ name, setName }) => {
   return (
     <div className="flex justify-between mb-6 text-black w-full sticky top-0 bg-blue-100 p-6 shadow">
       <input

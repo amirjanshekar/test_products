@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 const useDebounce = (
@@ -12,7 +12,10 @@ const useDebounce = (
   const router = useRouter();
   const pathname = usePathname();
 
-  const newSearchParams = new URLSearchParams(searchParams.toString());
+  const newSearchParams = useMemo(
+    () => new URLSearchParams(searchParams.toString()),
+    [searchParams],
+  );
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -26,7 +29,7 @@ const useDebounce = (
     }, delay);
 
     return () => clearTimeout(handler);
-  }, [value, delay]);
+  }, [value, delay, sideAction, pathname, router, newSearchParams]);
 };
 
 export default useDebounce;

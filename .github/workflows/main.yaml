@@ -11,9 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Vercel CLI
-        run: npm install -g vercel@latest
+        run: npm ci -g vercel@latest
       - name: Pull Vercel Environment
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Run linter
+        run: npm run lint
+      - name: Formatting with prettier
+        run: npm run prettier
       - name: Build Project
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy to Vercel
