@@ -11,17 +11,15 @@ const Filters: FunctionComponent<FiltersProps> = ({
   setName,
 }) => {
   return (
-    <div className="flex justify-between mb-6 text-black w-full rounded-lg">
-      <div>
-        <input
-          name="name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="h-full w-64 px-2 border border-black/30 rounded placeholder:text-sm outline-0 focus:shadow"
-          placeholder="Search..."
-        />
-      </div>
+    <div className="flex justify-between mb-6 text-black w-full sticky top-0 bg-blue-100 p-6 shadow">
+      <input
+        name="name"
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="w-64 h-10 px-2 border border-black/30 rounded placeholder:text-sm outline-0 focus:shadow"
+        placeholder="Search..."
+      />
 
       {/*<div className="flex items-center">*/}
       {/*  <div*/}

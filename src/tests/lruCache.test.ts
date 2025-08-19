@@ -1,10 +1,10 @@
-import CustomLRUCache from "@/lib/lru_cache";
 import { describe, expect, it } from "@jest/globals";
 import { PaginatedRes, Product } from "@/types";
+import CustomLRUCache from "@/lib/customLRUCache/lru_cache";
 
 describe("LRUCache", () => {
   it("should store and retrieve values", () => {
-    const cache = new CustomLRUCache(2);
+    const cache = new CustomLRUCache<PaginatedRes<Product>>(2);
     cache.set("key1", {
       result: [
         {
@@ -46,7 +46,7 @@ describe("LRUCache", () => {
   });
 
   it("should expire after exact time", () => {
-    const cache = new CustomLRUCache(2);
+    const cache = new CustomLRUCache<PaginatedRes<Product>>(2);
     cache.set(
       "key1",
       {
@@ -76,7 +76,7 @@ describe("LRUCache", () => {
   });
 
   it("should evict the least recently used item when capacity is exceeded", () => {
-    const cache = new CustomLRUCache(2);
+    const cache = new CustomLRUCache<PaginatedRes<Product>>(2);
     cache.set("key1", {
       result: [
         {

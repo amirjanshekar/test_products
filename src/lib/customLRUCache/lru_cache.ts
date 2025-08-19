@@ -1,11 +1,10 @@
-import { PaginatedRes, Product } from "@/types";
+"use client";
 
-class CustomLRUCache {
+import { CacheItem } from "@/lib/customLRUCache/types";
+
+class CustomLRUCache<T> {
   public readonly _capacity: number;
-  public _cache: Map<
-    string,
-    { value: PaginatedRes<Product>; expires: number }
-  > = new Map();
+  public _cache: Map<string, CacheItem<T>> = new Map();
 
   constructor(capacity: number, cache?: Map<string, unknown>) {
     this._capacity = capacity;
@@ -16,15 +15,17 @@ class CustomLRUCache {
     const entry = this._cache.get(key);
     if (!entry) return undefined;
 
+    this.delete(key);
+    this.set(key, entry.value, entry.expires - Date.now());
+
     if (Date.now() > entry.expires) {
       this.delete(key);
       return undefined;
     }
-
     return entry.value;
   }
 
-  set(key: string, value: PaginatedRes<Product>, ttl = 60 * 1000) {
+  set(key: string, value: T, ttl = 60 * 1000) {
     const expires = Date.now() + ttl;
     if (this._cache.has(key)) {
       const entry = this._cache.get(key);
@@ -38,9 +39,8 @@ class CustomLRUCache {
           ?.keys()
           ?.next()
           ?.value?.toString();
-        this._cache.delete(leastRecentlyUsedKey!);
+        this.delete(leastRecentlyUsedKey!);
       }
-      console.log(key, { value, expires });
       this._cache.set(key, { value, expires });
     }
   }

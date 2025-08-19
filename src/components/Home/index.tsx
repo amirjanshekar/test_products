@@ -1,54 +1,57 @@
 "use client";
 
-import React, {
-  FunctionComponent,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { FunctionComponent, useState } from "react";
 import { PaginatedRes, Product } from "@/types";
 import { Card, Filters, PaginationComponent } from "@/components";
 import { useDebounce } from "@/utils/hooks";
-import { useSearchParams } from "next/navigation";
-import { getCachedProducts } from "@/api/cache";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import { useGetCachedProducts } from "@/api/cache";
+import Skeleton from "react-loading-skeleton";
 
 interface HomeProps {
-  data: PaginatedRes<Product>;
+  initialData: PaginatedRes<Product>;
 }
 
-const Home: FunctionComponent<HomeProps> = ({ data }) => {
-  const parentRef: RefObject<HTMLDivElement | null> = useRef(null);
+const Home: FunctionComponent<HomeProps> = ({ initialData }) => {
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
+  const searchQuery: string | null = searchParams.get("name");
 
-  const searchParams = useSearchParams();
+  const [name, setName] = useState<string>(searchQuery ?? "");
+  const [page, setPage] = useState<number>(initialData?.pagination.page ?? 1);
 
-  const [name, setName] = useState<string>("");
-  const [page, setPage] = useState<number>(data?.pagination.page ?? 1);
-  const [products, setProducts] = useState<PaginatedRes<Product>>(data);
+  useDebounce(name, () => setPage(1));
 
-  useDebounce(name);
-
-  useEffect(() => {
-    getCachedProducts({ name: searchParams.get("name"), page }).then((res) => {
-      setProducts(res);
-    });
-  }, [searchParams.get("name"), page]);
+  const { data, isLoading } = useGetCachedProducts(
+    {
+      name: searchQuery,
+      page,
+    },
+    initialData,
+  );
 
   return (
-    <div className="bg-blue-100 p-6">
+    <div className="bg-blue-100 h-screen relative overflow-auto">
       <Filters setName={setName} name={name} />
-      <div
-        ref={parentRef}
-        className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-cols-1 gap-6 w-full"
-      >
-        {products?.result.map((product: Product) => (
-          <Card data={product} key={product?.id} />
-        ))}
+      <div className='px-6'>
+        {isLoading && (
+          <Skeleton
+            count={20}
+            height={290}
+            inline
+            containerClassName="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-cols-1 gap-6 w-full"
+          />
+        )}
+        {!isLoading && (
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-cols-1 gap-6 w-full">
+            {data?.result?.map((product: Product) => (
+              <Card data={product} key={product?.id} />
+            ))}
+          </div>
+        )}
       </div>
-      <PaginationComponent
-        pagination={products?.pagination}
-        setPage={setPage}
-      />
+
+
+      <PaginationComponent pagination={data?.pagination} setPage={setPage} />
     </div>
   );
 };

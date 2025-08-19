@@ -12,7 +12,7 @@ const PaginationComponent: FunctionComponent<PaginationComponentProps> = ({
   setPage,
 }) => {
   return (
-    <div className="flex items-center justify-center w-full mt-6">
+    <div className="flex items-center justify-center w-full mt-6 sticky bottom-0 bg-blue-100 py-4 border border-t-blue-200">
       {pagination && pagination?.page && (
         <div className="flex items-center border border-blue-500 rounded divide-x">
           {Boolean(pagination?.previous) && (
