@@ -7,6 +7,7 @@ import { useDebounce } from "@/utils/hooks";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useGetCachedProducts } from "@/api/cache";
 import Skeleton from "react-loading-skeleton";
+import { Ordering } from "@/types/OrderingInterface";
 
 interface HomeProps {
   initialData: PaginatedRes<Product>;
@@ -18,6 +19,7 @@ const Home: FunctionComponent<HomeProps> = ({ initialData }) => {
 
   const [name, setName] = useState<string>(searchQuery ?? "");
   const [page, setPage] = useState<number>(initialData?.pagination.page ?? 1);
+  const [ordering, setOrdering] = useState<Ordering>("name");
 
   useDebounce(name, () => setPage(1));
 
@@ -25,6 +27,7 @@ const Home: FunctionComponent<HomeProps> = ({ initialData }) => {
     {
       name: searchQuery,
       page,
+      ordering,
     },
     initialData,
   );
@@ -43,7 +46,12 @@ const Home: FunctionComponent<HomeProps> = ({ initialData }) => {
 
   return (
     <div className="bg-blue-100 h-screen relative overflow-auto">
-      <Filters setName={setName} name={name} />
+      <Filters
+        setName={setName}
+        name={name}
+        ordering={ordering}
+        setOrdering={setOrdering}
+      />
       <div className="px-6">
         {isLoading && (
           <Skeleton

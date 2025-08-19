@@ -1,3 +1,5 @@
+import { Ordering } from "@/types/OrderingInterface";
+
 export interface Product {
   id: string;
   name: string;
@@ -9,4 +11,5 @@ export interface Product {
 export interface ProductQueries {
   page: number;
   name?: string | null;
+  ordering?: Ordering;
 }
