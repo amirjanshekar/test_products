@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://amirjanshekar.pythonanywhere.com/api/v1",
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 });
 
 export default axiosInstance;
