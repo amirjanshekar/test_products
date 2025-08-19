@@ -14,7 +14,7 @@ import { getOrInitializeCacheStore } from "@/lib/customLRUCache/getOrInitializeC
 const CacheProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const cacheRef = useRef<CustomLRUCache<PaginatedRes<Product>>>(
     new CustomLRUCache<PaginatedRes<Product>>(
-      Number(process.env.NEXT_CUSTOM_CACHE_CAPACITY),
+      Number(process.env.NEXT_CUSTOM_CACHE_CAPACITY ?? 5),
     ),
   );
 

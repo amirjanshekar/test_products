@@ -4,7 +4,7 @@ import CustomLRUCache from "@/lib/customLRUCache/lru_cache";
 
 export const getOrInitializeCacheStore = <T>(): CustomLRUCache<T> => {
   let lru_cache = new CustomLRUCache<T>(
-    Number(process.env.NEXT_CUSTOM_CACHE_CAPACITY),
+    Number(process.env.NEXT_CUSTOM_CACHE_CAPACITY ?? 5),
   );
 
   if (!sessionStorage?.getItem("cache")) {
