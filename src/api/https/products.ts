@@ -6,13 +6,11 @@ export const getProductsList = async (
   params?: ProductQueries,
 ): Promise<PaginatedRes<Product>> => {
   const url: string = `/products/`;
-  const { name, ordering, page } = params;
-
   const { data }: AxiosResponse<PaginatedRes<Product>> = await axios.get(url, {
     params: {
-      name: name !== "" ? name : undefined,
-      ordering: ordering !== "" ? ordering : undefined,
-      page,
+      name: params?.name !== "" ? params?.name : undefined,
+      ordering: params?.ordering !== "" ? params?.ordering : undefined,
+      page: params?.page,
     },
   });
   return data;
