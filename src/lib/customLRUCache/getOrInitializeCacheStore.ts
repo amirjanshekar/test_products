@@ -1,15 +1,17 @@
+"use client";
+
 import CustomLRUCache from "@/lib/customLRUCache/lru_cache";
 
 export const getOrInitializeCacheStore = <T>(): CustomLRUCache<T> => {
-  let lru_cache: CustomLRUCache<T>;
-  if (!sessionStorage.getItem("cache")) {
-    lru_cache = new CustomLRUCache<T>(5);
+  let lru_cache = new CustomLRUCache<T>(
+    Number(process.env.NEXT_CUSTOM_CACHE_CAPACITY),
+  );
 
-    sessionStorage.setItem("cache", JSON.stringify(lru_cache));
-
+  if (!sessionStorage?.getItem("cache")) {
+    sessionStorage?.setItem("cache", JSON.stringify(lru_cache));
   } else {
     const last_lru_cache: CustomLRUCache<T> = JSON.parse(
-      sessionStorage.getItem("cache") ?? "{}",
+      sessionStorage?.getItem("cache") ?? "{}",
     );
 
     lru_cache = new CustomLRUCache<T>(

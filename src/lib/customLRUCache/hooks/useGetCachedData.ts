@@ -7,7 +7,8 @@ import {
   useRef,
   useState,
 } from "react";
-import { getOrInitializeCacheStore } from "@/lib/customLRUCache/getOrInitializeCacheStore";
+import { useCache } from "@/lib/customLRUCache/hooks";
+import CustomLRUCache from "@/lib/customLRUCache/lru_cache";
 
 const useGetCachedData = <T>(
   key: (string | null | undefined | number)[],
@@ -19,10 +20,10 @@ const useGetCachedData = <T>(
   const [data, setData] = useState<T>(initialData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handler: EffectCallback = () => {
-    const lru_cache = getOrInitializeCacheStore<T>();
+  const lru_cache = useCache<CustomLRUCache<T>>();
 
-    const cachedData: T | undefined = lru_cache.get(key.join(""));
+  const handler: EffectCallback = () => {
+    const cachedData = lru_cache.get(key.join(""));
     if (!cachedData) {
       if (keyRef.current === null) {
         setData(initialData);
